@@ -125,8 +125,8 @@ export default function Component() {
                 className="max-w-full h-auto"
               />
             ) : (
-              <div className="flex flex-col items-center">
-                <Upload className="w-8 h-8 text-blue-700 mb-4" />
+              <div className="flex flex-col items-center gap-5 p-5">
+                <Upload className="w-8 h-8 text-blue-700" />
                 <p className="text-sm text-blue-800">
                   {isDragging
                     ? "Drop the image"
