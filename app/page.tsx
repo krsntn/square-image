@@ -2,7 +2,8 @@
 
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Upload } from "lucide-react";
+import { ArrowRight, Upload } from "lucide-react";
+import NextImage from "next/image";
 
 export default function Component() {
   const [image, setImage] = useState<string | null>(null);
@@ -103,11 +104,45 @@ export default function Component() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gray-100 p-4"
+      className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4 gap-6"
       onDrop={onDrop}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
     >
+      <div className="flex gap-2 justify-center items-center">
+        <div className="relative px-6">
+          <NextImage
+            src="/image1.png"
+            alt="image"
+            width={200}
+            height={200}
+            className="w-[100px] h-auto border-gray-200 border"
+          />
+          <span className="absolute block -top-[20px] left-1/2 translate-x-[-50%] text-sm">
+            100
+          </span>
+          <span className="absolute block -left-0 top-1/2 translate-y-[-50%] text-sm">
+            67
+          </span>
+        </div>
+        <ArrowRight className="w-8 h-8" />
+        <div className="relative px-6">
+          <NextImage
+            src="/image2.png"
+            alt="image"
+            width={200}
+            height={200}
+            className="w-[100px] h-auto border-gray-200 border"
+          />
+          <span className="absolute block -top-[20px] left-1/2 translate-x-[-50%] text-sm">
+            100
+          </span>
+          <span className="absolute block -left-0 top-1/2 translate-y-[-50%] text-sm">
+            100
+          </span>
+        </div>
+      </div>
+
       <Card className="w-full max-w-md mx-auto relative shadow-lg">
         <CardContent className="p-6">
           <div
