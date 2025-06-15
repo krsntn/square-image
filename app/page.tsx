@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Upload } from "lucide-react";
+import { ArrowRight, Upload, X } from "lucide-react"; // Added X import
 import NextImage from "next/image";
 
 export default function Component() {
@@ -82,6 +82,10 @@ export default function Component() {
     fileInputRef.current?.click();
   }, []);
 
+  const handleRemoveImage = useCallback(() => {
+    setImage(null);
+  }, []);
+
   useEffect(() => {
     const handleGlobalDragOver = (e: DragEvent) => {
       e.preventDefault();
@@ -147,12 +151,24 @@ export default function Component() {
         <CardContent className="p-6">
           <div
             onClick={openFileDialog}
-            className={`border-2 border-dashed rounded-lg p-2 text-center cursor-pointer mb-4 transition-colors ${
+            className={`relative border-2 border-dashed rounded-lg p-2 text-center cursor-pointer mb-4 transition-colors ${
               isDragging
                 ? "border-blue-700 bg-blue-600/10"
                 : "border-blue-600 hover:border-blue-700"
             }`}
           >
+            {image && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent triggering openFileDialog
+                  handleRemoveImage();
+                }}
+                className="absolute top-2 right-2 p-1 rounded-full bg-gray-700/50 hover:bg-gray-700 text-white transition-colors duration-200"
+                aria-label="Remove image"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
             {image ? (
               <img
                 src={image}
